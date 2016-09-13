@@ -22,8 +22,8 @@ Vagrant.configure("2") do |config|
       printf "${GREEN}${MSG}${NC}\n"
     }
 
-    if ! which git > /dev/null; then
-      echoGreen "Installing Git"
+    if [ "$(git --version)" == "git version 2.5.0" ]; then
+      echoGreen "Installing Git..."
       
       add-apt-repository ppa:git-core/ppa
       apt-get update
