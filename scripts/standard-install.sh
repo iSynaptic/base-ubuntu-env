@@ -47,9 +47,16 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 
 if [ ! -f /home/vagrant/.zshrc ]; then
+    installing "Z-Shell profile hook"
+    
+    echo "source ~/zshrc.stock" >> /home/vagrant/.zshrc
+    echo "source ~/zshrc.stock" >> /root/.zshrc
+fi
+
+if [ ! -f /home/vagrant/zshrc.stock ]; then
     installing "stock Z-Shell profile"
-    cp /vagrant/zshrc /home/vagrant/.zshrc
-    cp /vagrant/zshrc /root/.zshrc
+    cp /vagrant/zshrc /home/vagrant/zshrc.stock
+    cp /vagrant/zshrc /root/zshrc.stock
 fi
 
 if [ -f /vagrant/zshrc.user ] && [ ! -f /home/vagrant/zshrc.user ]; then
@@ -59,22 +66,22 @@ if [ -f /vagrant/zshrc.user ] && [ ! -f /home/vagrant/zshrc.user ]; then
 fi
 
 SOURCE_PROFILE_HASH=($(md5sum /vagrant/zshrc))
-LOCAL_PROFILE_HASH=($(md5sum /home/vagrant/.zshrc))
+LOCAL_PROFILE_HASH=($(md5sum /home/vagrant/zshrc.stock))
 
-if [ ! "$LOCAL_PROFILE_HASH" == "$SOURCE_PROFILE_HASH" ]; then
+if [ ! "$LOCAL_PROFILE_HASH" = "$SOURCE_PROFILE_HASH" ]; then
     installing "updated stock Z-Shell profile"
-    rm /home/vagrant/.zshrc
-    rm /root/.zshrc
+    rm /home/vagrant/zshrc.stock
+    rm /root/zshrc.stock
 
-    cp /vagrant/zshrc /home/vagrant/.zshrc
-    cp /vagrant/zshrc /root/.zshrc
+    cp /vagrant/zshrc /home/vagrant/zshrc.stock
+    cp /vagrant/zshrc /root/zshrc.stock
 fi
 
 if [ -f /vagrant/zshrc.user ]; then
     SOURCE_CUSTOM_PROFILE_HASH=($(md5sum /vagrant/zshrc.user))
     LOCAL_CUSTOM_PROFILE_HASH=($(md5sum /home/vagrant/zshrc.user))
 
-    if [ ! "$LOCAL_CUSTOM_PROFILE_HASH" == "$SOURCE_CUSTOM_PROFILE_HASH" ]; then
+    if [ ! "$LOCAL_CUSTOM_PROFILE_HASH" = "$SOURCE_CUSTOM_PROFILE_HASH" ]; then
         installing "updated custom Z-Shell profile"
         rm /home/vagrant/zshrc.user
         rm /root/zshrc.user

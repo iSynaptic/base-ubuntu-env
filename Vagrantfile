@@ -15,14 +15,16 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", type: "dhcp"
 
-  config.vm.provision "file", source: "scripts", destination: "/tmp/scripts"
   config.vm.provision "shell", inline: <<-SHELL
+    rm -r /tmp/scripts
+    cp -rf /vagrant/scripts /tmp/scripts
+
     echo "Running standard installation script..."
 
-    pushd /tmp/scripts
+    pushd /tmp/scripts >> /dev/null
     chmod +x ./*
     ./standard-install.sh
-    popd
+    popd >> /dev/null
 SHELL
 
   if Object.respond_to?(:userVagrantConfig, true)
