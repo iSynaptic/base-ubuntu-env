@@ -2,7 +2,6 @@
 # vi: set ft=ruby :
 
 if File.file?('Vagrantfile.user')
-  puts "Loading Vagrantfile.user..."
   load 'Vagrantfile.user'
 end
 
@@ -27,7 +26,6 @@ Vagrant.configure("2") do |config|
 SHELL
 
   if Object.respond_to?(:userVagrantConfig, true)
-    puts "Running Custom Vagrant configuration..."
     userVagrantConfig(config)
   end
 
