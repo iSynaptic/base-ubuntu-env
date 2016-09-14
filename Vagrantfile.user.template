@@ -1,0 +1,12 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+def userVagrantConfig(config)
+
+#config.vm.synced_folder "../", "/projects"
+#config.vm.network "public_network"
+
+#config.vm.provision "shell", inline: <<-SHELL
+#SHELL
+
+end
