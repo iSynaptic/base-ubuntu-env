@@ -2,12 +2,26 @@
 
 source ./common.sh
 
-if [ "$(git --version)" == "git version 2.5.0" ]; then
+if [! -f /etc/init.d/ntp ]; then
+    installing "NTP"
+
+    apt-get install -y ntp
+    /etc/init.d/ntp start
+fi
+
+if [ "$(git --version)" = "git version 2.5.0" ]; then
     installing "Git"
-    
+
     add-apt-repository ppa:git-core/ppa
     apt-get update
     apt-get install -y git
+fi
+
+if ! which jq > /dev/null; then
+    installing "JQ 1.5"
+    curl -sL https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -o /tmp/jq
+    install /tmp/jq /usr/local/bin/jq
+    rm /tmp/jq
 fi
 
 if ! which docker > /dev/null; then
