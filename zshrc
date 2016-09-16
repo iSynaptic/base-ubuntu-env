@@ -3,13 +3,19 @@ ZSH_THEME="agnoster"
 
 DEFAULT_USER=vagrant
 
+mkdir -p /vagrant/profile/$USER/
+
+HISTSIZE=4000
+HISTFILE=/vagrant/profile/$USER/.zsh_history
+SAVEHIST=4000
+
 export VISUAL=nano
 export EDITOR=nano
 
 plugins=(git)
 
-if [ -f ~/zshrc.user ]; then
-  source ~/zshrc.user
+if [ -f ~/.zshrc.user ]; then
+  source ~/.zshrc.user
 fi
 
 if whence -w beforeOhMyZshLoad >> /dev/null; then

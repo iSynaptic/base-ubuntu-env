@@ -16,7 +16,11 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", type: "dhcp"
 
   config.vm.provision "shell", inline: <<-SHELL
-    rm -r /tmp/scripts
+
+    if [ -d /tmp/scripts ]; then
+      rm -r /tmp/scripts
+    fi
+
     cp -rf /vagrant/scripts /tmp/scripts
 
     echo "Running standard installation script..."
@@ -25,6 +29,7 @@ Vagrant.configure("2") do |config|
     chmod +x ./*
     ./standard-install.sh
     popd >> /dev/null
+
 SHELL
 
 
