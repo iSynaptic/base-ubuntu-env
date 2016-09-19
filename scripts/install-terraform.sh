@@ -2,7 +2,7 @@
 
 source ./common.sh
 
-if ! which terraform; then
+if ! which terraform >> /dev/null; then
     installing "Terraform"
 
     mkdir -p /tmp/terraform
