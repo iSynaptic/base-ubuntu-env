@@ -30,6 +30,20 @@ function prompt_context() {
   fi
 }
 
+eval "old_$(declare -f prompt_git)"
+
+prompt_git() {
+    if ! $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+        return
+    fi
+    
+    if [[ "$(command git config --get zsh-user.exclude-git-status)" == "1" ]]; then
+        return
+    fi
+
+    old_prompt_git
+}
+
 if whence -w afterOhMyZshLoad >> /dev/null; then
   afterOhMyZshLoad
 fi
