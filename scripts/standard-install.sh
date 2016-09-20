@@ -10,6 +10,8 @@ if ! which add-apt-repository >> /dev/null; then
 fi
 
 source ./install-curl.sh
+source ./install-unzip.sh
+
 source ./install-ntp.sh
 source ./install-git.sh
 source ./install-jq.sh
