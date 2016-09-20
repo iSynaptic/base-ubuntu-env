@@ -2,7 +2,7 @@
 
 source ./common.sh
 
-if [ "$(git --version)" = "git version 2.5.0" ]; then
+if (! which git >> /dev/null) || [ "$(git --version)" == "git version 2.5.0" ]; then
     installing "Git"
 
     add-apt-repository ppa:git-core/ppa

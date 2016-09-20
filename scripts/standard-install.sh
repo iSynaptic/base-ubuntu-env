@@ -2,6 +2,14 @@
 
 source ./common.sh
 
+if ! which add-apt-repository >> /dev/null; then
+    installing "Software Properties Common"
+    
+    apt-get update
+    apt-get install -y software-properties-common
+fi
+
+source ./install-curl.sh
 source ./install-ntp.sh
 source ./install-git.sh
 source ./install-jq.sh
