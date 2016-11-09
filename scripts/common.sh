@@ -5,11 +5,11 @@ if [ "$COMMON_SCRIPT_LOADED" = "1" ]; then
 fi
 
 function installing() {
-    doing "Installing" $1
+    doing "Installing" "$1"
 }
 
 function configuring() {
-    doing "Configuring" $1
+    doing "Configuring" "$1"
 }
 
 function doing() {
