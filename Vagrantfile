@@ -44,6 +44,8 @@ if File.file?('scripts/custom-install.sh.user')
 SHELL
 end
 
+config.vm.provision "shell", inline: "ps aux | grep 'sshd:' | awk '{print $2}' | xargs kill"
+
 if File.file?('scripts/custom-install-restricted.sh.user')
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
       echo "Running restricted custom installation script..."
