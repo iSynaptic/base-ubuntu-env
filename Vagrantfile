@@ -60,4 +60,17 @@ end
     userVagrantConfig(config)
   end
 
+  config.vm.provision "shell", inline: <<-SHELL
+    IP_ADDR=`ifconfig enp0s8 | grep "inet addr" | awk '{ print substr($2,6) }'`
+
+    cat <<EOF
+$(printf '\033[0;32m')
+
+=====================================
+==== VM IP Address: $IP_ADDR
+=====================================$(printf '\033[0m')
+EOF
+
+SHELL
+
 end
