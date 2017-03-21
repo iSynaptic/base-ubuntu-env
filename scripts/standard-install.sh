@@ -3,10 +3,10 @@
 source ./common.sh
 
 if ! which add-apt-repository >> /dev/null; then
-    installing "Software Properties Common"
+    installing "Software Properties Common & Build Essential"
     
     apt-get update
-    apt-get install -y software-properties-common
+    apt-get install -y software-properties-common build-essential
 fi
 
 source ./install-curl.sh

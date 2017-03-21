@@ -3,7 +3,7 @@
 
 def userVagrantConfig(config)
 
-#config.vm.synced_folder "../", "/projects"
+#config.vm.synced_folder "../", "/host-projects"
 #config.vm.network "public_network"
 
 #config.vm.provision "shell", inline: <<-SHELL
