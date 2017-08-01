@@ -1,5 +1,7 @@
 export ZSH=/home/vagrant/.oh-my-zsh
-ZSH_THEME="agnoster"
+
+ZSH_THEME="bullet-train"
+export BULLETTRAIN_PROMPT_ORDER=(time status custom context dir perl ruby virtualenv nvm aws go git cmd_exec_time)
 
 DEFAULT_USER=vagrant
 

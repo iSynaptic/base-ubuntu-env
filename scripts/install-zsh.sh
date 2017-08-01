@@ -18,6 +18,13 @@ if [ ! -d ~/.oh-my-zsh ]; then
     sudo cp -rf /root/.oh-my-zsh /home/vagrant/.oh-my-zsh
 fi
 
+if [ ! -f ~/.oh-my-zsh/themes/bullet-train.zsh-theme ]; then
+    installing "Bullet Train ZSH Theme"
+
+    curl -o ~/.oh-my-zsh/themes/bullet-train.zsh-theme -sSL http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
+    sudo cp ~/.oh-my-zsh/themes/bullet-train.zsh-theme /home/vagrant/.oh-my-zsh/themes/
+fi
+
 if [ ! -f /home/vagrant/.zshrc ]; then
     installing "Z-Shell profile hook"
     
