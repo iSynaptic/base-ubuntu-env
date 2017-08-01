@@ -13,6 +13,6 @@ if [ ! -f /opt/gradle/gradle-4.0/bin/gradle ]; then
 fi
 
 if ! which gradle > /dev/null; then
-    doing "Linking to Gradle install"
+    doing "Linking" "Gradle into 'gradle'"
     ln -s /opt/gradle/gradle-4.0/bin/gradle /usr/local/bin/gradle
 fi

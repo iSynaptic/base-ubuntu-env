@@ -3,7 +3,7 @@
 source ./common.sh
 
 if ! which irb >> /dev/null; then
-    doing "Installing Ruby & Development Dependencies..."
+    installing "Ruby & Development Dependencies"
     
     sudo apt-add-repository ppa:brightbox/ruby-ng
     sudo apt-get update
