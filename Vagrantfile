@@ -12,6 +12,14 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 4096
     v.cpus = 2
+
+    v.customize ["modifyvm", :id, "--nictype1", "virtio" ]
+    v.customize ["modifyvm", :id, "--nictype2", "virtio" ]
+    v.customize ["modifyvm", :id, "--nictype3", "virtio" ]
+    v.customize ["modifyvm", :id, "--nictype4", "virtio" ]
+
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
   config.vm.network "private_network", type: "dhcp"
