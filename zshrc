@@ -3,6 +3,7 @@ export LANG=en_US.utf8
 
 ZSH_THEME="bullet-train"
 export BULLETTRAIN_PROMPT_ORDER=(time status custom context dir perl ruby virtualenv nvm aws go git cmd_exec_time)
+export BULLETTRAIN_STATUS_EXIT_SHOW=true
 
 DEFAULT_USER=vagrant
 
