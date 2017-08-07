@@ -21,4 +21,6 @@ GREEN='\033[0;32m'
     printf "${GREEN}$DOING ${MSG}...${NC}\n"
 }
 
+function version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
+
 COMMON_SCRIPT_LOADED=1
