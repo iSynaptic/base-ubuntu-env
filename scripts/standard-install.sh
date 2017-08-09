@@ -2,10 +2,14 @@
 
 source ./common.sh
 
+if [ ! -f /etc/dist-upgraded ]; then
+    apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
+    touch /etc/dist-upgraded
+fi
+
 if ! which add-apt-repository >> /dev/null; then
     installing "Software Properties Common & Build Essential"
-    
-    apt-get update
     apt-get install -y software-properties-common build-essential
 fi
 
