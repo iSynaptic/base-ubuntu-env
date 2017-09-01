@@ -15,10 +15,10 @@ fi
 
 source ./install-curl.sh
 source ./install-unzip.sh
+source ./install-jq.sh
 
 source ./install-ntp.sh
 source ./install-git.sh
-source ./install-jq.sh
 source ./install-docker.sh
 source ./install-nano.sh
 source ./install-zsh.sh
