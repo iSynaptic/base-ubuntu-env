@@ -5,11 +5,17 @@ source ./common.sh
 IP_ADDR=`ifconfig enp0s8 | grep "inet addr" | awk '{ print substr($2,6) }'`
 
 if ! which docker > /dev/null; then
-    installing "Docker"
+    installing "Docker 17.06.2"
 
-    curl -sSL https://get.docker.com | sh
-
-    gpasswd -a vagrant docker
+    apt-get update
+    apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    apt-get update
+    apt-get install -y docker-ce=17.06.2~ce-0~ubuntu
+    
+    sudo usermod -aG docker vagrant
+    systemctl enable docker
 fi
 
 MINIMUM_DC_VERSION=1.15.0
@@ -36,7 +42,7 @@ mkdir -p /var/docker
 
 if [ ! "$(ls -1 /var/docker | jq -Rrsj 'split("\n") | map(select(length > 0)) | sort | .[]')" = "ca-cert.pemca-cert.srlca-key.pemclient-cert.pemclient-key.pemserver-cert.pemserver-key.pem" ]; then
     doing "Deleting" "Incomplete Docker TLS fileset"
-    rm /var/docker/**
+    rm -f /var/docker/**
     rm -f /etc/docker/daemon.json
 fi
 
@@ -136,7 +142,6 @@ fi
 
 cat > /tmp/docker-daemon.json <<EOF
 {
-    "debug": true,
     "tls": true,
     "tlsverify": true,
     "tlscacert": "/var/docker/ca-cert.pem",

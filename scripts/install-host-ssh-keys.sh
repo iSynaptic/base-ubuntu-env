@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source common.sh
+source ./common.sh
 
 if [ ! -f ~/.ssh/id_rsa ]; then
     installing "Host SSH private key"
