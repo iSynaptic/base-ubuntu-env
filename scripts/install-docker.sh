@@ -2,17 +2,17 @@
 
 source ./common.sh
 
-IP_ADDR=`ifconfig enp0s8 | grep "inet addr" | awk '{ print substr($2,6) }'`
+IP_ADDR=`ifconfig eth1 | grep "inet addr" | awk '{ print substr($2,6) }'`
 
 if ! which docker > /dev/null; then
-    installing "Docker 17.06.2"
+    installing "Docker 17.09.0"
 
     apt-get update
     apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     apt-get update
-    apt-get install -y docker-ce=17.06.2~ce-0~ubuntu
+    apt-get install -y docker-ce=17.09.0~ce-0~ubuntu
     
     sudo usermod -aG docker vagrant
     systemctl enable docker
