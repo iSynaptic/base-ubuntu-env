@@ -17,6 +17,8 @@ source ./install-curl.sh
 source ./install-unzip.sh
 source ./install-jq.sh
 
+source ./install-gpg2.sh
+
 source ./install-ntp.sh
 source ./install-git.sh
 source ./install-docker.sh
