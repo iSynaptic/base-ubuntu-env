@@ -18,6 +18,8 @@ source ./install-unzip.sh
 source ./install-jq.sh
 
 source ./install-gpg2.sh
+source ./install-gopass.sh
+source ./install-ssh-vault.sh
 
 source ./install-ntp.sh
 source ./install-git.sh
