@@ -9,9 +9,9 @@ DEFAULT_USER=vagrant
 
 mkdir -p /vagrant/profile/$USER/
 
-export HISTSIZE=25000
+export HISTSIZE=50000
 export HISTFILE=/vagrant/profile/$USER/.zsh_history
-export SAVEHIST=25000
+export SAVEHIST=50000
 
 unsetopt HIST_SAVE_BY_COPY
 setopt HIST_FCNTL_LOCK
