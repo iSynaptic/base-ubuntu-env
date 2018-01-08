@@ -29,7 +29,7 @@ fi
 if [ ! -d /opt/kafka ]; then
     installing "Kafka 0.8 Distribution"
 
-    curl -o /tmp/kafka.tgz -sSL http://mirror.cc.columbia.edu/pub/software/apache/kafka/0.8.2.2/kafka_2.11-0.8.2.2.tgz
+    curl -o /tmp/kafka.tgz -sSL https://archive.apache.org/dist/kafka/0.8.2.2/kafka_2.11-0.8.2.2.tgz
     (cd /tmp && tar -vxzf /tmp/kafka.tgz > /dev/null)
     rm /tmp/kafka.tgz
     mv /tmp/kafka_2.11-0.8.2.2 /opt/kafka
