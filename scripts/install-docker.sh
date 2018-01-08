@@ -4,21 +4,22 @@ source ./common.sh
 
 IP_ADDR=`ifconfig eth1 | grep "inet addr" | awk '{ print substr($2,6) }'`
 
+TARGET_DOCKER_VERSION="17.12.0"
 if ! which docker > /dev/null; then
-    installing "Docker 17.09.0"
+    installing "Docker $TARGET_DOCKER_VERSION"
 
     apt-get update
     apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     apt-get update
-    apt-get install -y docker-ce=17.09.0~ce-0~ubuntu
+    apt-get install -y docker-ce=$TARGET_DOCKER_VERSION~ce-0~ubuntu
     
     sudo usermod -aG docker vagrant
     systemctl enable docker
 fi
 
-MINIMUM_DC_VERSION=1.15.0
+MINIMUM_DC_VERSION=1.18.0
 EXISTING_DC_VERSION=$((which docker-compose && (docker-compose --version | awk '{print $3}')) || echo "0.0.0")
 
 if ! which docker-compose >> /dev/null || version_gt $MINIMUM_DC_VERSION $EXISTING_DC_VERSION ; then
