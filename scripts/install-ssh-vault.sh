@@ -13,4 +13,5 @@ if ! which ssh-vault > /dev/null; then
 
     install /tmp/ssh-vault_0.12.3_linux_amd64/ssh-vault /usr/local/bin/ssh-vault
     rm -rf /tmp/ssh-vault_0.12.3_linux_amd64
+    rm /tmp/ssh-vault.tar.gz
 fi
