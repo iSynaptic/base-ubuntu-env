@@ -13,8 +13,12 @@ if ! which add-apt-repository >> /dev/null; then
     apt-get install -y software-properties-common build-essential
 fi
 
+if ! apt list --installed 2>/dev/null | grep apt-transport-https > /dev/null 2>&1; then
+    apt-get install -y apt-transport-https
+fi
+
 source ./install-curl.sh
-source ./install-unzip.sh
+source ./install-zip-tools.sh
 source ./install-jq.sh
 
 source ./install-gpg2.sh
@@ -26,6 +30,8 @@ source ./install-git.sh
 source ./install-docker.sh
 source ./install-nano.sh
 source ./install-zsh.sh
+
+source ./install-fd.sh
 
 if [ -f /vagrant/ubuntu-xenial-16.04-cloudimg-console.log ]; then
     rm /vagrant/ubuntu-xenial-16.04-cloudimg-console.log
