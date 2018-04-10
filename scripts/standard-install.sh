@@ -20,6 +20,7 @@ fi
 source ./install-curl.sh
 source ./install-zip-tools.sh
 source ./install-jq.sh
+source ./install-gron.sh
 
 source ./install-gpg2.sh
 source ./install-gopass.sh

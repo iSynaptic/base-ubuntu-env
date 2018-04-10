@@ -67,7 +67,7 @@ fi
 
 if [ ! -f /var/docker/server-key.pem ]; then
     doing "Generating" "Docker Host Key"
-    openssl genrsa -out /var/docker/server-key.pem 4096 > /dev/null 2>&1
+    openssl genrsa -out /var/docker/server-key.pem 4096 > /dev/null &1
     chmod 400 /var/docker/server-key.pem
 fi
 
