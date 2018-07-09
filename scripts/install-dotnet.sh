@@ -10,5 +10,5 @@ if ! which dotnet > /dev/null; then
     sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
 
     apt-get update
-    apt-get install dotnet-sdk-2.1.4
+    apt-get install -y dotnet-sdk-2.1.4
 fi
