@@ -4,7 +4,7 @@ source ./common.sh
 
 IP_ADDR=`ifconfig eth1 | grep "inet addr" | awk '{ print substr($2,6) }'`
 
-TARGET_DOCKER_VERSION="17.12.0"
+TARGET_DOCKER_VERSION="18.03.1"
 if ! which docker > /dev/null; then
     installing "Docker $TARGET_DOCKER_VERSION"
 
@@ -19,7 +19,7 @@ if ! which docker > /dev/null; then
     systemctl enable docker
 fi
 
-MINIMUM_DC_VERSION=1.18.0
+MINIMUM_DC_VERSION=1.21.2
 EXISTING_DC_VERSION=$((which docker-compose && (docker-compose --version | awk '{print $3}')) || echo "0.0.0")
 
 if ! which docker-compose >> /dev/null || version_gt $MINIMUM_DC_VERSION $EXISTING_DC_VERSION ; then
@@ -67,7 +67,7 @@ fi
 
 if [ ! -f /var/docker/server-key.pem ]; then
     doing "Generating" "Docker Host Key"
-    openssl genrsa -out /var/docker/server-key.pem 4096 > /dev/null &1
+    openssl genrsa -out /var/docker/server-key.pem 4096 > /dev/null 2>&1
     chmod 400 /var/docker/server-key.pem
 fi
 
