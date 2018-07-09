@@ -31,10 +31,10 @@ fi
 
 if ! which pkg-config > /dev/null; then
     installing "pkg-config package"
-    apt-get install -y pkg-config
+    sudo apt-get install -y pkg-config
 fi
 
 if ! apt list --installed 2>/dev/null | grep clang-3.8 > /dev/null; then
     installing "Clang 3.8"
-    apt-get install -y clang-3.8
+    sudo apt-get install -y clang-3.8
 fi
