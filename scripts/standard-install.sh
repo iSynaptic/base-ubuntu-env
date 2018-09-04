@@ -34,6 +34,8 @@ source ./install-nano.sh
 source ./install-zsh.sh
 
 source ./install-fd.sh
+source ./install-ripgrep.sh
+source ./install-exa.sh
 
 if [ -f /vagrant/ubuntu-xenial-16.04-cloudimg-console.log ]; then
     rm /vagrant/ubuntu-xenial-16.04-cloudimg-console.log
