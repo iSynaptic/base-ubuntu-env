@@ -6,5 +6,5 @@ if [ ! -f /etc/init.d/ntp ]; then
     installing "NTP"
 
     apt-get install -y ntp
-    /etc/init.d/ntp start
+    service ntp restart
 fi

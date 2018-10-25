@@ -5,7 +5,7 @@ source ./common.sh
 if ! which ganda > /dev/null; then
     installing "Ganda"
 
-    curl -sL https://github.com/tednaleid/ganda/releases/download/v0.1.1/ganda_Linux_x86_64.tar.gz -o /tmp/ganda.tar.gz
+    curl -sSL https://github.com/tednaleid/ganda/releases/download/v0.1.6/ganda_0.1.6_linux_amd64.tar.gz -o /tmp/ganda.tar.gz
     (
         cd /tmp
         tar -vxzf /tmp/ganda.tar.gz

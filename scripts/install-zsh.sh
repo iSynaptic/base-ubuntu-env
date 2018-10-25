@@ -16,7 +16,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     sudo cp -rf /root/.oh-my-zsh /home/vagrant/.oh-my-zsh
-    sudo chmod -R vagrant:vagrant /home/vagrant/.oh-my-zsh
+    sudo chown -R vagrant:vagrant /home/vagrant/.oh-my-zsh
 fi
 
 if [ ! -f ~/.oh-my-zsh/themes/bullet-train.zsh-theme ]; then
@@ -24,7 +24,7 @@ if [ ! -f ~/.oh-my-zsh/themes/bullet-train.zsh-theme ]; then
 
     curl -o ~/.oh-my-zsh/themes/bullet-train.zsh-theme -sSL http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
     sudo cp ~/.oh-my-zsh/themes/bullet-train.zsh-theme /home/vagrant/.oh-my-zsh/themes/
-    sudo chmod -R vagrant:vagrant /home/vagrant/.oh-my-zsh
+    sudo chown -R vagrant:vagrant /home/vagrant/.oh-my-zsh
 fi
 
 if [ ! -f /home/vagrant/.zshrc ]; then

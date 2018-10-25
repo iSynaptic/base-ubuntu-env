@@ -14,8 +14,34 @@ if ! which add-apt-repository >> /dev/null; then
 fi
 
 if ! apt list --installed 2>/dev/null | grep apt-transport-https > /dev/null 2>&1; then
+    installing "APT HTTPS support"
     apt-get install -y apt-transport-https
 fi
+
+# if ! (cat /etc/resolvconf/resolv.conf.d/head 2> /dev/null || echo "") | grep "nameserver 1.1.1.1" > /dev/null 2>&1; then
+#     mkdir -p /etc/resolvconf/resolv.conf.d
+
+#     cat >> /etc/resolvconf/resolv.conf.d/head <<EOF
+
+# nameserver 1.1.1.1
+# nameserver 1.0.0.1
+# nameserver 8.8.8.8
+# nameserver 8.8.4.4
+# EOF
+
+# fi
+
+# if ! apt list --installed 2>/dev/null | grep resolvconf > /dev/null 2>&1; then
+#     installing "Resolvconf Package"
+#     apt install -y resolvconf
+
+#     service resolvconf start
+# fi
+
+# resolvconf -u
+
+rm -f /etc/resolv.conf
+ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
 source ./install-curl.sh
 source ./install-zip-tools.sh
@@ -37,6 +63,6 @@ source ./install-fd.sh
 source ./install-ripgrep.sh
 source ./install-exa.sh
 
-if [ -f /vagrant/ubuntu-xenial-16.04-cloudimg-console.log ]; then
-    rm /vagrant/ubuntu-xenial-16.04-cloudimg-console.log
-fi
+#if [ -f /vagrant/ubuntu-xenial-16.04-cloudimg-console.log ]; then
+#    rm /vagrant/ubuntu-xenial-16.04-cloudimg-console.log
+#fi

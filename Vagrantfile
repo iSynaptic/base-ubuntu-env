@@ -6,8 +6,8 @@ if File.file?('Vagrantfile.user')
 end
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
-  config.vm.box_version = ">= 201806.08.0"
+  config.vm.box = "bento/ubuntu-18.04"
+  config.vm.box_version = ">= 201808.24.0"
   
   config.vm.provider "virtualbox" do |v|
     v.memory = 4096
@@ -61,7 +61,7 @@ end
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    IP_ADDR=`ifconfig eth1 | grep "inet addr" | awk '{ print substr($2,6) }'`
+    IP_ADDR=`ifconfig eth1 | grep "inet " | awk '{ print substr($2,1) }'`
 
     cat <<EOF
 $(printf '\033[0;32m')

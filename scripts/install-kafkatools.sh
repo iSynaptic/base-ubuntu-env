@@ -21,7 +21,7 @@ rm -rf /tmp/kafkacat-1.3.1 /tmp/kafkacat.tar.gz
 EOF
 
     chmod +x /tmp/make-kafkacat.sh
-    docker run --rm -v /tmp:/tmp debian:9.1 /tmp/make-kafkacat.sh
+    docker run --rm -v /tmp:/tmp debian:9.5 /tmp/make-kafkacat.sh
     install /tmp/kafkacat /usr/local/bin/kafkacat
     rm /tmp/kafkacat /tmp/make-kafkacat.sh
 fi
@@ -38,7 +38,7 @@ fi
 if ! which kt > /dev/null; then
     installing "KT"
 
-    curl -o /tmp/kt.txz -sSL https://github.com/fgeller/kt/releases/download/v11.1.0/kt-v11.1.0-linux-amd64.txz
+    curl -o /tmp/kt.txz -sSL https://github.com/fgeller/kt/releases/download/v12.1.0/kt-v12.1.0-linux-amd64.txz
     (cd /tmp && tar -xf /tmp/kt.txz)
     install /tmp/kt /usr/local/bin/kt
     rm /tmp/kt.txz /tmp/kt
