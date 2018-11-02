@@ -61,7 +61,7 @@ end
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    IP_ADDR=`ifconfig eth1 | grep "inet " | awk '{ print substr($2,1) }'`
+    IP_ADDR=`(ifconfig eth1; ifconfig eth0) | grep 'inet ' | head -n1 | awk '{ print substr($2,1) }'`
 
     cat <<EOF
 $(printf '\033[0;32m')

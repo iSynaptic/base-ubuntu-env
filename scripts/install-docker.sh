@@ -2,7 +2,7 @@
 
 source ./common.sh
 
-IP_ADDR=`ifconfig eth1 | grep "inet " | awk '{ print substr($2,1) }'`
+IP_ADDR=`(ifconfig eth1; ifconfig eth0) | grep 'inet ' | head -n1 | awk '{ print substr($2,1) }'`
 
 TARGET_DOCKER_VERSION="18.06.1"
 if ! which docker > /dev/null; then
