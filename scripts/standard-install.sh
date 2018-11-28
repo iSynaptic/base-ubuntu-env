@@ -40,6 +40,8 @@ fi
 
 # resolvconf -u
 
+echo -1 > /proc/sys/kernel/perf_event_paranoid
+
 rm -f /etc/resolv.conf
 ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
