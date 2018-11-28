@@ -187,3 +187,10 @@ if ! which reg > /dev/null; then
     sudo install /tmp/reg /usr/local/bin/reg
     rm /tmp/reg
 fi
+
+if ! which dive > /dev/null; then
+    installing "dive"
+    curl -o /tmp/dive.deb -sSL https://github.com/wagoodman/dive/releases/download/v0.3.0/dive_0.3.0_linux_amd64.deb
+    dpkg -i /tmp/dive.deb
+    rm /tmp/dive.deb
+fi
