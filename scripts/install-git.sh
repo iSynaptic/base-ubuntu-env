@@ -20,3 +20,16 @@ if ! which git >> /dev/null || version_gt $MINIMUM_GIT_VERSION $EXISTING_GIT_VER
 fi
 
 )
+
+if ! which gitin >> /dev/null; then
+    installing "Gitin"
+    curl -o /tmp/gitin.tgz -sSL https://github.com/isacikgoz/gitin/releases/download/v0.1.0/gitin_0.1.0_linux_amd64.tar.gz
+
+    (
+        cd /tmp
+        tar -xf gitin.tgz
+    )
+    install /tmp/gitin /usr/local/bin/gitin
+
+    rm /tmp/gitin /tmp/gitin.tgz
+fi
