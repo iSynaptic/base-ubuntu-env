@@ -29,10 +29,10 @@ if ! $rustup component list | grep -P 'rust-analysis.+\(installed\)' > /dev/null
     $rustup component add rust-analysis
 fi
 
-if ! $rustup component list | grep -P 'rls-preview.+\(installed\)' > /dev/null; then
+if ! $rustup component list | grep -P 'rls.+\(installed\)' > /dev/null; then
     installing "Rust Language Service component"
 
-    $rustup component add rls-preview
+    $rustup component add rls
 fi
 
 if ! which racer > /dev/null; then
