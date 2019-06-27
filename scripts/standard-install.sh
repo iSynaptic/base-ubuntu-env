@@ -42,3 +42,4 @@ source ./install-zsh.sh
 source ./install-fd.sh
 source ./install-ripgrep.sh
 source ./install-exa.sh
+source ./install-fzf.sh

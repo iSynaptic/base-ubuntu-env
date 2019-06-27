@@ -19,6 +19,8 @@ setopt HIST_SAVE_NO_DUPS
 setopt SHARE_HISTORY
 setopt HIST_VERIFY
 
+export FZF_BASE=/etc/fzf
+
 export VISUAL=nano
 export EDITOR=nano
 
