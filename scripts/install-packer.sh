@@ -7,7 +7,7 @@ if ! which packer > /dev/null; then
 
     pushd /tmp >> /dev/null
 
-    curl -s https://releases.hashicorp.com/packer/0.10.1/packer_0.10.1_linux_amd64.zip -o packer.zip
+    curl -sSL https://releases.hashicorp.com/packer/1.4.2/packer_1.4.2_linux_amd64.zip -o packer.zip
     unzip packer.zip
     install packer /usr/local/bin/packer
     

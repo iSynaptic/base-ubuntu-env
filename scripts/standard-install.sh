@@ -33,13 +33,14 @@ source ./install-gpg2.sh
 source ./install-gopass.sh
 source ./install-ssh-vault.sh
 
+source ./install-fd.sh
+source ./install-sd.sh
+source ./install-ripgrep.sh
+source ./install-exa.sh
+source ./install-fzf.sh
+
 source ./install-ntp.sh
 source ./install-git.sh
 source ./install-docker.sh
 source ./install-nano.sh
 source ./install-zsh.sh
-
-source ./install-fd.sh
-source ./install-ripgrep.sh
-source ./install-exa.sh
-source ./install-fzf.sh

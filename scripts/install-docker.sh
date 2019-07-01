@@ -4,7 +4,7 @@ source ./common.sh
 
 IP_ADDR=`(ifconfig eth1; ifconfig eth0) | grep 'inet ' | head -n1 | awk '{ print substr($2,1) }'`
 
-TARGET_DOCKER_VERSION="18.06.1"
+TARGET_DOCKER_VERSION="18.09.7"
 if ! which docker > /dev/null; then
     installing "Docker $TARGET_DOCKER_VERSION"
 
@@ -13,13 +13,13 @@ if ! which docker > /dev/null; then
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     apt-get update
-    apt-get install -y docker-ce=$TARGET_DOCKER_VERSION~ce~3-0~ubuntu
+    apt-get install -y docker-ce=5:$TARGET_DOCKER_VERSION~3-0~ubuntu-cosmic
     
     sudo usermod -aG docker vagrant
     systemctl enable docker
 fi
 
-MINIMUM_DC_VERSION=1.22.0
+MINIMUM_DC_VERSION=1.24.0
 EXISTING_DC_VERSION=$((which docker-compose && (docker-compose --version | awk '{print $3}')) || echo "0.0.0")
 
 if ! which docker-compose >> /dev/null || version_gt $MINIMUM_DC_VERSION $EXISTING_DC_VERSION ; then
@@ -134,9 +134,14 @@ EOF
     rm /tmp/extfile.cnf
 fi
 
-if cat /lib/systemd/system/docker.service | grep '^ExecStart=/usr/bin/dockerd \-H fd://$' > /dev/null; then
+if cat /lib/systemd/system/docker.service | rg -P '(?<=^ExecStart=/usr/bin/dockerd )\-H fd://\s?(?=.*?$)' > /dev/null; then
     doing "Removing" "Host Flag from Docker SystemD service config"
-    sed -i -e 's/dockerd -H fd:\/\//dockerd/g' /lib/systemd/system/docker.service
+
+    cat /lib/systemd/system/docker.service | rg -C9999999 -P '(?<=^ExecStart=/usr/bin/dockerd )\-H fd://\s?(?=.*?$)' -r "" > /tmp/docker.service
+
+    rm /lib/systemd/system/docker.service
+    mv /tmp/docker.service /lib/systemd/system/
+    
     rm -f /etc/docker/daemon.json
     sudo systemctl daemon-reload
 fi
@@ -160,7 +165,7 @@ if [ ! "$(cat /tmp/docker-daemon.json | jq 'has("hosts")')" = "true" ]; then
 fi
 
 if [ ! -f /etc/docker/daemon.json ]; then
-    configuring "Docker Daemon"
+    configuring "Docker Daemon (with Restart)"
     cp /tmp/docker-daemon.json /etc/docker/daemon.json
 
     service docker stop

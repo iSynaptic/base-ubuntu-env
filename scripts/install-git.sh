@@ -3,7 +3,7 @@
 source ./common.sh
 (
 
-MINIMUM_GIT_VERSION=2.19.1
+MINIMUM_GIT_VERSION=2.22.0
 EXISTING_GIT_VERSION=$((which git && (git --version | awk '{print $3}')) || echo "0.0.0")
 
 if ! which git >> /dev/null || version_gt $MINIMUM_GIT_VERSION $EXISTING_GIT_VERSION ; then
@@ -23,7 +23,7 @@ fi
 
 if ! which gitin >> /dev/null; then
     installing "Gitin"
-    curl -o /tmp/gitin.tgz -sSL https://github.com/isacikgoz/gitin/releases/download/v0.1.0/gitin_0.1.0_linux_amd64.tar.gz
+    curl -o /tmp/gitin.tgz -sSL https://github.com/isacikgoz/gitin/releases/download/v0.2.1/gitin_0.2.1_linux_amd64.tar.gz
 
     (
         cd /tmp

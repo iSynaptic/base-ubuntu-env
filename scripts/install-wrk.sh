@@ -3,7 +3,7 @@
 source ./common.sh
 
 if ! which wrk > /dev/null; then
-    installing "Wrk 4.0.2 (may take a while)"
+    installing "Wrk 4.1.0 (may take a while)"
     
     cat > /tmp/make-wrk.sh <<EOF
 #!/bin/bash
