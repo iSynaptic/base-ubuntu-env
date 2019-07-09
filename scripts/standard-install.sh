@@ -36,6 +36,7 @@ source ./install-ssh-vault.sh
 source ./install-fd.sh
 source ./install-sd.sh
 source ./install-ripgrep.sh
+source ./install-rga.sh
 source ./install-exa.sh
 source ./install-fzf.sh
 
