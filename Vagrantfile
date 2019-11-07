@@ -14,8 +14,6 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
   end
 
-  config.vm.network "private_network", type: "dhcp"
-
   config.vm.provision "shell", inline: <<-SHELL
 
     if [ -d /tmp/scripts ]; then

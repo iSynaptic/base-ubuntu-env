@@ -33,3 +33,16 @@ if ! which gitin >> /dev/null; then
 
     rm /tmp/gitin /tmp/gitin.tgz
 fi
+
+if ! which hub >> /dev/null; then
+    installing "Hub"
+    curl -o /tmp/hub.tgz -sSL https://github.com/github/hub/releases/download/v2.12.3/hub-linux-amd64-2.12.3.tgz
+
+    (
+        cd /tmp
+        tar -xf hub.tgz
+    )
+    
+    install /tmp/hub-linux-amd64-2.12.3/bin/hub /usr/local/bin/hub
+    rm -rf /tmp/hub-linux-amd64-2.12.3 /tmp/hub.tgz
+fi

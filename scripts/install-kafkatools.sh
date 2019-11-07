@@ -12,12 +12,12 @@ apt-get update
 apt-get install -y curl python wget build-essential
 
 cd /tmp
-curl -o /tmp/kafkacat.tar.gz -sSL https://github.com/edenhill/kafkacat/archive/1.3.1.tar.gz
+curl -o /tmp/kafkacat.tar.gz -sSL https://github.com/edenhill/kafkacat/archive/1.4.0.tar.gz
 tar -vxzf /tmp/kafkacat.tar.gz
-cd /tmp/kafkacat-1.3.1
+cd /tmp/kafkacat-1.4.0
 ./bootstrap.sh
-mv /tmp/kafkacat-1.3.1/kafkacat /tmp/kafkacat
-rm -rf /tmp/kafkacat-1.3.1 /tmp/kafkacat.tar.gz
+mv /tmp/kafkacat-1.4.0/kafkacat /tmp/kafkacat
+rm -rf /tmp/kafkacat-1.4.0 /tmp/kafkacat.tar.gz
 EOF
 
     chmod +x /tmp/make-kafkacat.sh
