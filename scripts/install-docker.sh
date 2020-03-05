@@ -2,24 +2,26 @@
 
 source ./common.sh
 
-IP_ADDR=`(ifconfig eth1; ifconfig eth0) | grep 'inet ' | head -n1 | awk '{ print substr($2,1) }'`
+IP_ADDR=`ip route | grep eth1 | awk '{ print substr($9,1) }'`
 
-TARGET_DOCKER_VERSION="18.09.7"
+TARGET_DOCKER_VERSION="19.03.7"
 if ! which docker > /dev/null; then
     installing "Docker $TARGET_DOCKER_VERSION"
+
+    FULL_VERSION=5:$TARGET_DOCKER_VERSION~3-0~ubuntu-eoan
 
     apt-get update
     apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     apt-get update
-    apt-get install -y docker-ce=5:$TARGET_DOCKER_VERSION~3-0~ubuntu-cosmic
+    apt-get install -y docker-ce=$FULL_VERSION docker-ce-cli=$FULL_VERSION
     
     sudo usermod -aG docker vagrant
     systemctl enable docker
 fi
 
-MINIMUM_DC_VERSION=1.24.0
+MINIMUM_DC_VERSION=1.25.4
 EXISTING_DC_VERSION=$((which docker-compose && (docker-compose --version | awk '{print $3}')) || echo "0.0.0")
 
 if ! which docker-compose >> /dev/null || version_gt $MINIMUM_DC_VERSION $EXISTING_DC_VERSION ; then
@@ -73,6 +75,9 @@ fi
 
 if [ ! -f /var/docker/server-cert.pem ]; then
     doing "Generating" "Docker Host Certificate"
+
+    DOCKER_ALT_NAMES="$(ip route | grep -P "eth\d" | awk '{ printf "IP:%s\n", $9}' | sort | uniq | paste -sd ',' -)"
+
     openssl req -subj "/CN=$(hostname)" \
                 -sha256 \
                 -new \
@@ -81,7 +86,7 @@ if [ ! -f /var/docker/server-cert.pem ]; then
 
     cat > /tmp/extfile.cnf <<EOF
   extendedKeyUsage = serverAuth
-  subjectAltName = DNS:$(hostname),IP:$IP_ADDR,IP:127.0.0.1
+  subjectAltName = DNS:$(hostname),${DOCKER_ALT_NAMES},IP:127.0.0.1
 EOF
 
     openssl x509 -req \
@@ -146,6 +151,8 @@ if cat /lib/systemd/system/docker.service | rg -P '(?<=^ExecStart=/usr/bin/docke
     sudo systemctl daemon-reload
 fi
 
+DOCKER_HOST_URIS="$(ip route | grep -P "eth\d" | awk '{ printf "\"tcp://%s:2376\"\n", $9}' | sort | uniq | paste -sd "," -)"
+
 cat > /tmp/docker-daemon.json <<EOF
 {
     "tls": true,
@@ -153,7 +160,7 @@ cat > /tmp/docker-daemon.json <<EOF
     "tlscacert": "/var/docker/ca-cert.pem",
     "tlscert": "/var/docker/server-cert.pem",
     "tlskey": "/var/docker/server-key.pem",
-    "hosts": ["fd://", "tcp://$IP_ADDR:2376", "tcp://127.0.0.1:2376"]
+    "hosts": ["fd://", $DOCKER_HOST_URIS, "tcp://127.0.0.1:2376"]
 }
 EOF
 
