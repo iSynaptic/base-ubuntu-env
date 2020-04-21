@@ -38,7 +38,7 @@ fi
 if ! which kt > /dev/null; then
     installing "KT"
 
-    curl -o /tmp/kt.txz -sSL https://github.com/fgeller/kt/releases/download/v12.1.0/kt-v12.1.0-linux-amd64.txz
+    curl -o /tmp/kt.txz -sSL https://github.com/fgeller/kt/releases/download/v13.0.0/kt-v13.0.0-linux-amd64.txz
     (cd /tmp && tar -xf /tmp/kt.txz)
     install /tmp/kt /usr/local/bin/kt
     rm /tmp/kt.txz /tmp/kt

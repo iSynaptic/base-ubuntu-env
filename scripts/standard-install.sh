@@ -30,6 +30,7 @@ source ./install-yaml2json.sh
 source ./install-gron.sh
 source ./install-pv.sh
 source ./install-ptail.sh
+source ./install-jwt.sh
 
 source ./install-gpg2.sh
 source ./install-gopass.sh
