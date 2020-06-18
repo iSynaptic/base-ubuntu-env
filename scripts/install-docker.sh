@@ -194,7 +194,7 @@ rm /tmp/docker-daemon.json
 
 if ! which reg > /dev/null; then
     installing "reg"
-    curl -o /tmp/reg -sSL https://github.com/genuinetools/reg/releases/download/v0.14.1/reg-linux-amd64
+    curl -o /tmp/reg -sSL https://github.com/genuinetools/reg/releases/download/v0.16.1/reg-linux-amd64
     install /tmp/reg /usr/local/bin/reg
     sudo install /tmp/reg /usr/local/bin/reg
     rm /tmp/reg
