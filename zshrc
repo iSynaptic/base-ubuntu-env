@@ -59,3 +59,5 @@ prompt_git() {
 if whence -w afterOhMyZshLoad >> /dev/null; then
   afterOhMyZshLoad
 fi
+
+source <(navi widget zsh)

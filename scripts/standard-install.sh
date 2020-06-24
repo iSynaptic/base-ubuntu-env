@@ -42,6 +42,7 @@ source ./install-ripgrep.sh
 source ./install-rga.sh
 source ./install-exa.sh
 source ./install-fzf.sh
+source ./install-navi.sh
 
 source ./install-ntp.sh
 source ./install-git.sh
