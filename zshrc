@@ -1,4 +1,5 @@
 export ZSH=/home/vagrant/.oh-my-zsh
+export PATH=/snap/bin:$PATH
 export LANG=en_US.utf8
 
 ZSH_THEME="bullet-train"
