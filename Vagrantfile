@@ -6,8 +6,8 @@ if File.file?('Vagrantfile.user')
 end
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-19.10"
-  config.vm.box_version = ">= 202003.31.0"
+  config.vm.box = "bento/ubuntu-20.04"
+  config.vm.box_version = ">= 202007.17.0"
   
   config.vm.provider "virtualbox" do |v|
     v.memory = 4096
@@ -41,8 +41,6 @@ if File.file?('scripts/custom-install.sh.user')
       popd >> /dev/null
 SHELL
 end
-
-config.vm.provision "shell", inline: "ps aux | grep 'sshd:' | awk '{print $2}' | xargs kill"
 
 if File.file?('scripts/custom-install-restricted.sh.user')
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
