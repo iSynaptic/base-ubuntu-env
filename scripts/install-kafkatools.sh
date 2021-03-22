@@ -9,15 +9,30 @@ if ! which kafkacat > /dev/null; then
 #!/bin/bash
 
 apt-get update
-apt-get install -y curl python wget build-essential
+apt-get install -y \
+    curl \
+    python \
+    wget \
+    build-essential \
+    libcurl4-openssl-dev \
+    pkg-config \
+    cmake \
+    libssl-dev \
+    liblz4-dev \
+    liblzma-dev \
+    zlib1g-dev \
+    libsnappy-dev \
+    libsasl2-dev \
+    libzstd-dev \
+    libjansson-dev
 
 cd /tmp
-curl -o /tmp/kafkacat.tar.gz -sSL https://github.com/edenhill/kafkacat/archive/1.4.0.tar.gz
+curl -o /tmp/kafkacat.tar.gz -sSL https://github.com/edenhill/kafkacat/archive/1.6.0.tar.gz
 tar -vxzf /tmp/kafkacat.tar.gz
-cd /tmp/kafkacat-1.4.0
+cd /tmp/kafkacat-1.6.0
 ./bootstrap.sh
-mv /tmp/kafkacat-1.4.0/kafkacat /tmp/kafkacat
-rm -rf /tmp/kafkacat-1.4.0 /tmp/kafkacat.tar.gz
+mv /tmp/kafkacat-1.6.0/kafkacat /tmp/kafkacat
+rm -rf /tmp/kafkacat-1.6.0 /tmp/kafkacat.tar.gz
 EOF
 
     chmod +x /tmp/make-kafkacat.sh
