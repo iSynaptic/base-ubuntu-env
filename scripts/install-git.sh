@@ -46,3 +46,17 @@ if ! which hub >> /dev/null; then
     install /tmp/hub-linux-amd64-2.12.3/bin/hub /usr/local/bin/hub
     rm -rf /tmp/hub-linux-amd64-2.12.3 /tmp/hub.tgz
 fi
+
+if ! which gh >> /dev/null; then
+    installing "GitHub CLI"
+    curl -o /tmp/gh.tgz -sSL https://github.com/cli/cli/releases/download/v1.7.0/gh_1.7.0_linux_amd64.tar.gz
+
+    (
+        mkdir -p /tmp/gh
+        cd /tmp/gh
+        tar -xf /tmp/gh.tgz
+    )
+    
+    install /tmp/gh/gh_1.7.0_linux_amd64/bin/gh /usr/local/bin/gh
+    rm -rf /tmp/gh /tmp/gh.tgz
+fi
