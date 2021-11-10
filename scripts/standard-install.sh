@@ -49,3 +49,4 @@ source ./install-git.sh
 source ./install-docker.sh
 source ./install-nano.sh
 source ./install-zsh.sh
+source ./install-earthly.sh

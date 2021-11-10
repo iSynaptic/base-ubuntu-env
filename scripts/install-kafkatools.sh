@@ -3,9 +3,9 @@
 source ./common.sh
 
 if ! which kafkacat > /dev/null; then
-    installing "Kafkacat (may take a while)"
+    installing "kafkacat (may take a while)"
     
-    cat > /tmp/make-kafkacat.sh <<EOF
+    cat > /tmp/make-kcat.sh <<EOF
 #!/bin/bash
 
 apt-get update
@@ -27,18 +27,18 @@ apt-get install -y \
     libjansson-dev
 
 cd /tmp
-curl -o /tmp/kafkacat.tar.gz -sSL https://github.com/edenhill/kafkacat/archive/1.6.0.tar.gz
-tar -vxzf /tmp/kafkacat.tar.gz
-cd /tmp/kafkacat-1.6.0
+curl -o /tmp/kcat.tar.gz -sSL https://github.com/edenhill/kcat/archive/1.6.0.tar.gz
+tar -vxzf /tmp/kcat.tar.gz
+cd /tmp/kcat-1.6.0
 ./bootstrap.sh
-mv /tmp/kafkacat-1.6.0/kafkacat /tmp/kafkacat
-rm -rf /tmp/kafkacat-1.6.0 /tmp/kafkacat.tar.gz
+mv /tmp/kcat-1.6.0/kafkacat /tmp/kafkacat
+rm -rf /tmp/kcat-1.6.0 /tmp/kcat.tar.gz
 EOF
 
-    chmod +x /tmp/make-kafkacat.sh
-    docker run --rm -v /tmp:/tmp debian:9.5 /tmp/make-kafkacat.sh
+    chmod +x /tmp/make-kcat.sh
+    docker run --rm -v /tmp:/tmp debian:11.1 /tmp/make-kcat.sh
     install /tmp/kafkacat /usr/local/bin/kafkacat
-    rm /tmp/kafkacat /tmp/make-kafkacat.sh
+    rm /tmp/kafkacat /tmp/make-kcat.sh
 fi
 
 if ! which kt > /dev/null; then
