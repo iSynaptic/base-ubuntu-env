@@ -8,8 +8,13 @@ if [ ! -f /etc/dist-upgraded ]; then
     touch /etc/dist-upgraded
 fi
 
-if ! which add-apt-repository >> /dev/null; then
-    installing "Software Properties Common & Build Essential"
+if ! apt list --installed 2>/dev/null | grep software-properties-common > /dev/null 2>&1; then
+    installing "Software Properties Common"
+    apt-get install -y software-properties-common
+fi
+
+if ! apt list --installed 2>/dev/null | grep build-essential > /dev/null 2>&1; then
+    installing "Build Essential"
     apt-get install -y software-properties-common build-essential
 fi
 
