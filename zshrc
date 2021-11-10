@@ -21,11 +21,12 @@ setopt SHARE_HISTORY
 setopt HIST_VERIFY
 
 export FZF_BASE=/etc/fzf
+export PATH=$PATH:$FZF_BASE
 
 export VISUAL=nano
 export EDITOR=nano
 
-plugins=(git)
+plugins=(git fzf)
 
 if [ -f ~/.zshrc.user ]; then
   source ~/.zshrc.user

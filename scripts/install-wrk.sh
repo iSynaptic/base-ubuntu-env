@@ -25,4 +25,5 @@ EOF
     docker run --rm -v /tmp:/tmp debian:9.5 /tmp/make-wrk.sh
     install /tmp/wrk /usr/local/bin/wrk
     rm /tmp/wrk /tmp/make-wrk.sh
+    docker image rm debian:9.5
 fi
