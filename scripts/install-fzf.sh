@@ -4,7 +4,7 @@ source ./common.sh
 
 mkdir -p /etc/fzf/shell
 
-if ! which fzf >> /dev/null; then
+if [ ! -f /etc/fzf/fzf ]; then
     installing "Fzf"
     curl -o /tmp/fzf.tgz -sSL https://github.com/junegunn/fzf/releases/download/0.28.0/fzf-0.28.0-linux_amd64.tar.gz
 
