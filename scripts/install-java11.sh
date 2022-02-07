@@ -2,26 +2,18 @@
 
 source ./common.sh
 
-if ! which javac > /dev/null; then
-    installing "Java 11 (AdoptOpenJDK)"
+if ! which /usr/lib/jvm/temurinopenjdk-11-hotspot-amd64/bin/java > /dev/null; then
+    installing "Java 11 (Temurin OpenJDK)"
 
-    wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+    curl -sSL0 https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.14%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.14_9.tar.gz -o /tmp/jdk11.tar.gz
 
-    sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-
-    apt-get install -y adoptopenjdk-11-hotspot
-fi
-
-if [ ! -d /etc/jvm-async-profiler ]; then
-    installing "JVM Async Profiler"
-
-    curl -o /tmp/ap.tar.gz -sSL https://github.com/jvm-profiling-tools/async-profiler/releases/download/v1.5/async-profiler-1.5-linux-x64.tar.gz
-    mkdir -p /tmp/ap
+    mkdir -p /usr/lib/jvm/temurinopenjdk-11-hotspot-amd64
     (
-        cd /tmp/ap
-        tar -vxzf /tmp/ap.tar.gz
+        cd /usr/lib/jvm/temurinopenjdk-11-hotspot-amd64
+        tar -xf /tmp/jdk11.tar.gz --strip-components=1
     )
 
-    mv /tmp/ap /etc/jvm-async-profiler
-    rm /tmp/ap.tar.gz
+    rm /tmp/jdk11.tar.gz
+
+    update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/temurinopenjdk-11-hotspot-amd64/bin/java" 1 >/dev/null 2>&1
 fi
