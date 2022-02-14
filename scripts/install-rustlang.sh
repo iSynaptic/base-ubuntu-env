@@ -9,11 +9,11 @@ fi
 
 if ! apt list --installed 2>/dev/null | grep clang > /dev/null; then
     curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-    add-apt-repository "deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-11 main"
-    apt-get update
+    sudo add-apt-repository "deb http://apt.llvm.org/impish/ llvm-toolchain-impish-13 main"
+    sudo apt-get update
 
-    installing "Clang 11.0"
-    sudo apt-get install -y clang=1:11.0-51~exp1
+    installing "Clang 13.0"
+    sudo apt-get install -y clang=1:13.0-53~exp1
 fi
 
 if ! which rustc > /dev/null; then
