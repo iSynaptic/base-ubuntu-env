@@ -11,8 +11,10 @@ if ! which rga > /dev/null; then
         cd /tmp
         tar -xf rga.tar.gz
         mv ripgrep_all-v0.9.6-x86_64-unknown-linux-musl/rga rga
+        mv ripgrep_all-v0.9.6-x86_64-unknown-linux-musl/rga-preproc rga-preproc
     )
 
     install /tmp/rga /usr/local/bin/rga
-    rm -rf /tmp/ripgrep_all-v0.9.6-x86_64-unknown-linux-musl /tmp/rga.tar.gz /tmp/rga
+    install /tmp/rga-preproc /usr/local/bin/rga-preproc
+    rm -rf /tmp/ripgrep_all-v0.9.6-x86_64-unknown-linux-musl /tmp/rga.tar.gz /tmp/rga /tmp/rga-preproc
 fi
