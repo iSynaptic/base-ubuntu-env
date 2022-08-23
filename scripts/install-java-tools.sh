@@ -22,6 +22,7 @@ if [ ! -f /usr/local/bin/pick-java ]; then
     cat > /tmp/pick-java <<EOF
 #!/bin/bash
 sudo update-alternatives --config java
+sudo update-alternatives --config keytool
 EOF
 
     install /tmp/pick-java /usr/local/bin/pick-java

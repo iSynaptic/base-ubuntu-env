@@ -16,4 +16,5 @@ if ! which /usr/lib/jvm/temurinopenjdk-11-hotspot-amd64/bin/java > /dev/null; th
     rm /tmp/jdk11.tar.gz
 
     update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/temurinopenjdk-11-hotspot-amd64/bin/java" 1 >/dev/null 2>&1
+    update-alternatives --install "/usr/bin/keytool" "keytool" "/usr/lib/jvm/temurinopenjdk-11-hotspot-amd64/bin/keytool" 1 >/dev/null 2>&1
 fi

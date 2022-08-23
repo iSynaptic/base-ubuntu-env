@@ -16,4 +16,5 @@ if ! which /usr/lib/jvm/temurinopenjdk-17-hotspot-amd64/bin/java > /dev/null; th
     rm /tmp/jdk17.tar.gz
 
     update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/temurinopenjdk-17-hotspot-amd64/bin/java" 0 >/dev/null 2>&1
+    update-alternatives --install "/usr/bin/keytool" "keytool" "/usr/lib/jvm/temurinopenjdk-17-hotspot-amd64/bin/keytool" 0 >/dev/null 2>&1
 fi
