@@ -28,6 +28,10 @@ export EDITOR=nano
 
 plugins=(git fzf)
 
+if [ -f ~/.zshrc.installed ]; then
+  source ~/.zshrc.installed
+fi
+
 if [ -f ~/.zshrc.user ]; then
   source ~/.zshrc.user
 fi

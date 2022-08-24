@@ -4,11 +4,11 @@ source ./common.sh
 
 IP_ADDR=`ip route | grep eth1 | awk '{ print substr($9,1) }'`
 
-TARGET_DOCKER_VERSION="20.10.12"
+TARGET_DOCKER_VERSION="20.10.16"
 if ! which docker > /dev/null; then
     installing "Docker $TARGET_DOCKER_VERSION"
 
-    FULL_VERSION=5:$TARGET_DOCKER_VERSION~3-0~ubuntu-impish
+    FULL_VERSION=5:$TARGET_DOCKER_VERSION~3-0~ubuntu-$(lsb_release -cs)
 
     apt-get update
     apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
@@ -21,7 +21,7 @@ if ! which docker > /dev/null; then
     systemctl enable docker
 fi
 
-MINIMUM_DC_VERSION=2.2.3
+MINIMUM_DC_VERSION=2.10.0
 EXISTING_DC_VERSION=$((which docker-compose && (docker-compose --version | awk '{print $3}')) || echo "0.0.0")
 
 if ! which docker-compose >> /dev/null || version_gt $MINIMUM_DC_VERSION $EXISTING_DC_VERSION ; then
@@ -43,7 +43,7 @@ fi
 
 mkdir -p /var/docker
 
-if [ ! "$(ls -1 /var/docker | jq -Rrsj 'split("\n") | map(select(length > 0)) | sort | .[]')" = "ca-cert.pemca-cert.srlca-key.pemclient-cert.pemclient-key.pemserver-cert.pemserver-key.pem" ]; then
+if [ ! "$(ls -1 /var/docker | jq -Rrsj 'split("\n") | map(select(length > 0)) | sort | .[]')" = "ca-cert.pemca-key.pemclient-cert.pemclient-key.pemserver-cert.pemserver-key.pem" ]; then
     doing "Deleting" "Incomplete Docker TLS fileset"
     rm -f /var/docker/**
     rm -f /etc/docker/daemon.json

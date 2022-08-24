@@ -15,15 +15,3 @@ if [ ! -d /etc/jvm-async-profiler ]; then
     mv /tmp/ap /etc/jvm-async-profiler
     rm /tmp/ap.tar.gz
 fi
-
-if [ ! -f /usr/local/bin/pick-java ]; then
-    installing "Java Selection Script"
-
-    cat > /tmp/pick-java <<EOF
-#!/bin/bash
-sudo update-alternatives --config java
-sudo update-alternatives --config keytool
-EOF
-
-    install /tmp/pick-java /usr/local/bin/pick-java
-fi

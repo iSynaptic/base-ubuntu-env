@@ -9,11 +9,11 @@ fi
 
 if ! apt list --installed 2>/dev/null | grep clang > /dev/null; then
     curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-    sudo add-apt-repository "deb http://apt.llvm.org/impish/ llvm-toolchain-impish-13 main"
+    sudo add-apt-repository "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-14 main"
     sudo apt-get update
 
-    installing "Clang 13.0"
-    sudo apt-get install -y clang=1:13.0-53~exp1
+    installing "Clang 14.0"
+    sudo apt-get -y install clang-14 clang-tools-14 clang-14-doc libclang-common-14-dev libclang-14-dev libclang1-14 clang-format-14 python3-clang-14 clangd-14 clang-tidy-14 
 fi
 
 if ! which rustc > /dev/null; then
