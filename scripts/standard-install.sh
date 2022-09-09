@@ -49,6 +49,7 @@ source ./install-rga.sh
 source ./install-exa.sh
 source ./install-fzf.sh
 source ./install-navi.sh
+source ./install-just.sh
 
 source ./install-ntp.sh
 source ./install-git.sh
