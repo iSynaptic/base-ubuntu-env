@@ -66,4 +66,6 @@ if whence -w afterOhMyZshLoad >> /dev/null; then
   afterOhMyZshLoad
 fi
 
+source <(yq shell-completion zsh)
 source <(navi widget zsh)
+source <(just --completions bash)

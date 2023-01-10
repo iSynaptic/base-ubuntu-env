@@ -31,6 +31,7 @@ ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 source ./install-curl.sh
 source ./install-zip-tools.sh
 source ./install-jq.sh
+source ./install-yq.sh
 source ./install-jless.sh
 source ./install-yaml2json.sh
 source ./install-gron.sh
