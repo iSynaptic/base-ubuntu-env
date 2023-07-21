@@ -2,7 +2,7 @@
 
 source ./common.sh
 
-EARTHLY_VERSION="0.6.22"
+EARTHLY_VERSION="0.7.4"
 
 if ! which earthly > /dev/null; then
     installing "Earthly v$EARTHLY_VERSION"

@@ -139,7 +139,7 @@ EOF
     rm /tmp/extfile.cnf
 fi
 
-if cat /lib/systemd/system/docker.service | rg -P '(?<=^ExecStart=/usr/bin/dockerd )\-H fd://\s?(?=.*?$)' > /dev/null; then
+if cat /lib/systemd/system/docker.service | grep -P '(?<=^ExecStart=/usr/bin/dockerd )\-H fd://\s?(?=.*?$)' > /dev/null; then
     doing "Removing" "Host Flag from Docker SystemD service config"
 
     cat /lib/systemd/system/docker.service | rg -C9999999 -P '(?<=^ExecStart=/usr/bin/dockerd )\-H fd://\s?(?=.*?$)' -r "" > /tmp/docker.service

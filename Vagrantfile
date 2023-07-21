@@ -7,7 +7,8 @@ end
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-22.04"
-  config.vm.box_version = ">= 202212.11.0"
+  config.vm.box_version = ">= 202303.13.0"
+  config.vm.boot_timeout = 600
   
   config.vm.provider "virtualbox" do |v|
     v.memory = 4096

@@ -4,8 +4,8 @@ source ./common.sh
 
 if ! which rg > /dev/null; then
     installing "Ripgrep"
-    curl -o /tmp/ripgrep.deb -sSL https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+    curl -o /tmp/rg -sSL https://github.com/iSynaptic/base-ubuntu-env/releases/download/ripgrep-linux-x64-with-pcre2/rg
 
-    dpkg -i /tmp/ripgrep.deb
-    rm /tmp/ripgrep.deb
+    install /tmp/rg /usr/bin/rg
+    rm /tmp/rg
 fi
