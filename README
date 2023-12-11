@@ -1,1 +1,14 @@
 Prerequisites: Running a terminal with [support for "bullet-train" Oh My Zsh theme](https://github.com/caiogondim/bullet-train.zsh#requirements) (ie Solarized color scheme and patched fonts)
+
+
+### Steps to Grow Disk Partition:
+
+1. Run `sudo cfdisk /dev/sda`
+2. Use arrows to select your disk probably sdaX. eg. `sda3`.
+3. Then select resize using arrow keys. Accept the suggested disk size.
+4. Then select write. And answer yes.
+5. You can select quit now.
+6. `sudo pvresize /dev/sda3`
+7. `sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv`
+8. `sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv`
+9. Run `df -h` and see that your disk size has increased.
